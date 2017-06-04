@@ -1,0 +1,44 @@
+{
+  "name": "voting-app",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
+  "repository": "https://github.com/tango05/voting-app",
+  "author": "Joelson Santana",
+  "license": "MIT",
+  "dependencies": {
+    "asyncawait": "^1.0.6",
+    "axios": "^0.16.1",
+    "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.0",
+    "lodash.assignin": "^4.2.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.isplainobject": "^4.0.6",
+    "mongoose": "^4.10.3",
+    "next": "beta",
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0",
+    "react": "^15.5.4",
+    "react-chartjs-2": "^2.1.0",
+    "react-dom": "^15.5.4"
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "babel-plugin-module-alias": "^1.6.0",
+    "standard": "^10.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "/static/js/lib/*.js"
+    ]
+  }
+}
