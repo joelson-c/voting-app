@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./app"],
+      "alias": {
+        "helpers": "./helpers",
+        "components": "./components"
+      }
+    }]
+  ],
+  "presets": [
+    "next/babel"
+  ]
+}
