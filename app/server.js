@@ -1,6 +1,3 @@
-// Dotenv
-// require('dotenv').config()
-
 const isEmpty = require('lodash.isempty')
 const isPlainObject = require('lodash.isplainobject')
 
@@ -16,7 +13,7 @@ const apiRouter = require('./routers/api.js')
 const authRouter = require('./routers/auth.js')
 
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({dev})
+const app = next({dev, dir: __dirname})
 const handle = app.getRequestHandler()
 
 app.prepare()

@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./app:/usr/src/voting-app/app
+    labels:
+      com.votingApp.environment: ${APP_ENV}
+    links:
+      - mongo
+    environment:
+      - DB_URL=${DB_URL}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=${GOOGLE_CALLBACK_URL}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    networks:
+      - default
+
+  mongo:
+    image: mongo:3.4
+    volumes:
+      - dataVolume:/data/db
+    networks:
+      default:
+        aliases:
+          - db
+
+volumes:
+  dataVolume:
+
+networks:
+  default:
