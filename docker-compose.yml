@@ -5,8 +5,6 @@ services:
     build: .
     ports:
       - '3000:3000'
-    volumes:
-      - ./app:/usr/src/voting-app/app
     labels:
       com.votingApp.environment: ${APP_ENV}
     links:
