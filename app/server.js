@@ -45,7 +45,9 @@ app.prepare()
   server.use(require('express-mongo-sanitize')())
 
   // Passport
-  server.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true, name: 'user_session' }))
+  server.use(require('express-session')({
+    secret: process.env.SECRET_KEY || 'default', resave: true, saveUninitialized: true, name: 'user_session'
+  }))
   server.use(passport.initialize())
   server.use(passport.session())
 
