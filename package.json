@@ -2,7 +2,7 @@
   "name": "voting-app",
   "version": "0.0.1",
   "private": true,
-  "main": "server.js",
+  "main": "app/server.js",
   "repository": "https://github.com/tango05/voting-app",
   "author": "Joelson Santana",
   "license": "MIT",
@@ -33,14 +33,12 @@
     "react-dom": "^15.5.4"
   },
   "scripts": {
-    "dev": "node ./app/server.js",
+    "dev": "node app/server.js",
     "build": "next build app",
-    "start": "node ./app/server.js",
-    "server": "next build app && node ./app/server.js",
+    "start": "node app/server.js",
     "lint": "standard"
   },
   "devDependencies": {
-    "newman": "^3.6.1",
     "standard": "^10.0.2"
   },
   "standard": {

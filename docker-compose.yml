@@ -8,7 +8,7 @@ services:
     labels:
       com.votingApp.environment: ${APP_ENV}
     links:
-      - mongo
+      - db
     env_file: ./app/.env
     deploy:
       restart_policy:
@@ -17,7 +17,7 @@ services:
     networks:
       - default
 
-  mongo:
+  db:
     image: mongo:3.4
     env_file: ./db/.env
     volumes:
