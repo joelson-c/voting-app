@@ -6,7 +6,7 @@ export default () => (
       .full-height {
         height: 88vh;
         padding: .8rem;
-        background: url(http://via.placeholder.com/1024x720) center/cover fixed;
+        background: url(http://via.placeholder.com/1980x1080) center/cover fixed;
       }
 
       .valign-wrapper {
@@ -24,7 +24,7 @@ export default () => (
           Etiam ac turpis mi. Praesent nec quam ac ipsum aliquam ullamcorper sed nec eros. Phasellus non elit dolor.
           Fusce nec aliquet diam, in dictum arcu. Sed nisi ante, lacinia nec aliquam ut, gravida eu libero.
         </p>
-        <a href='/login' className='btn'>Login</a>
+        <a href='/login' className='btn-large'>Login</a>
       </div>
     </div>
     <div className='section'>

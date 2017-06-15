@@ -23,10 +23,10 @@ export default ({ message }) => {
     return (
       <div>
         <div className='row'>
-          <div className='col s3 m1'>
+          <div className='col s3 m2'>
             { Indicator }
           </div>
-          <div className='col s7 m11'>
+          <div className='col s9 m10' style={{ margin: 0 }}>
             <p className='flow-text'>{ message }</p>
           </div>
         </div>

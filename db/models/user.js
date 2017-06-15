@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const db = require('../dbConnect.js')
+const findOrCreate = require('mongoose-findorcreate')
+const db = require('../')
 
 const Schema = mongoose.Schema
 
@@ -16,6 +17,8 @@ const userSchema = new Schema({
     }
   }
 })
+
+userSchema.plugin(findOrCreate)
 
 const userModel = db.model('User', userSchema)
 

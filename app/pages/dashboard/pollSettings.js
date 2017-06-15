@@ -1,7 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
 import isEmpty from 'lodash.isempty'
-import assignIn from 'lodash.assignin'
 
 import Layout from 'components/layout'
 import Preloader from 'components/preloader'

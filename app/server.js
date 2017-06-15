@@ -1,3 +1,6 @@
+require('./globals.js')
+
+// Lodash utils
 const isEmpty = require('lodash.isempty')
 const isPlainObject = require('lodash.isplainobject')
 
@@ -5,40 +8,42 @@ const express = require('express')
 const next = require('next')
 const passport = require('passport')
 
-const errorHandler = require('./api/errorHandler.js')
-
 // Routing
 const userProtectedRouter = require('./routers/userProtected.js')
 const apiRouter = require('./routers/api.js')
 const authRouter = require('./routers/auth.js')
 
+const errorHandler = require('./errorHandler.js')
+
+// Next
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev, dir: __dirname})
 const handle = app.getRequestHandler()
+
+// Express custom validators
+const customValidators = {
+  isArray (value) {
+    return Array.isArray(value)
+  },
+
+  hasLeastOneObject (array) {
+    if (isEmpty(array) && this.isArray(array)) {
+      return false
+    } else if (this.isArray(array)) {
+      return array.find((elem) => isPlainObject(elem) === false) === undefined
+    } else {
+      return false
+    }
+  }
+}
 
 app.prepare()
 .then(() => {
   const server = express()
 
-  server.set('trust proxy', '127.0.0.1')
+  server.enable('trust proxy')
 
-  // Express custom validators
-  const customValidators = {
-    isArray (value) {
-      return Array.isArray(value)
-    },
-
-    hasLeastOneObject (array) {
-      if (isEmpty(array) && this.isArray(array)) {
-        return false
-      } else if (this.isArray(array)) {
-        return array.find((elem) => isPlainObject(elem) === false) === undefined
-      } else {
-        return false
-      }
-    }
-  }
-
+  // General middlewares
   server.use(require('body-parser').json())
   server.use(require('express-validator')({ customValidators }))
 
@@ -51,10 +56,9 @@ app.prepare()
   server.use(passport.initialize())
   server.use(passport.session())
 
+  // Routing
   server.use('/api', apiRouter)
   server.use('/auth', authRouter)
-
-  server.use(errorHandler)
 
   server.use('/', userProtectedRouter(app, handle))
 
@@ -65,14 +69,16 @@ app.prepare()
 
   server.get('*', (req, res) => handle(req, res))
 
-  const http = server.listen(3000, (err) => {
+  server.use(errorHandler)
+
+  const http = server.listen(process.env.PORT || '3000', (err) => {
     if (err) throw err
 
     console.log('Listening on port 3000!')
   })
 
   process.on('SIGTERM', () => {
-    if (isEmpty(process.env.NODE_ENV) || process.env.NODE_ENV === 'development') return process.exit(1)
+    if (isEmpty(process.env.NODE_ENV) || process.env.NODE_ENV === 'development') return process.exit(0)
 
     http.close(() => {
       process.exit(0)

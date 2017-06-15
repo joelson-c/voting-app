@@ -21,8 +21,6 @@ class MyAccountPage extends React.Component {
       user: null,
       hasFetched: false
     }
-
-    this.handleDelete = this.handleDelete.bind(this)
   }
 
   async componentDidMount () {
@@ -34,12 +32,6 @@ class MyAccountPage extends React.Component {
     } else {
       this.setState({ user: this.props.user, hasFetched: true })
     }
-  }
-
-  async handleDelete () {
-    await axios.delete(`/api/user/${this.state.user._id}`)
-
-    Router.replace('/auth/logout')
   }
 
   showPage () {
@@ -64,7 +56,11 @@ class MyAccountPage extends React.Component {
 
           <div className='danger-area'>
             <Card
-              actions={<button type='button' className='btn red' onClick={this.handleDelete}>Delete My Account</button>}>
+              actions={
+                <form method='POST' action='/api/user?_method=DELETE'>
+                  <button type='submit' className='btn red'>Delete My Account</button>
+                </form>
+              }>
               <p>After you delete your account, all the data associated with it will be deleted.</p>
             </Card>
           </div>

@@ -1,13 +1,9 @@
-const User = require('../api/models/user.js')
+const User = global.rootRequire('db/models/user.js')
 
-module.exports = function (passportRef) {
-  passportRef.serializeUser(function (user, done) {
-    done(null, user.id)
-  })
+module.exports = (passportRef) => {
+  passportRef.serializeUser((user, done) => done(null, user.id))
 
-  passportRef.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user)
-    })
+  passportRef.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => done(err, user))
   })
 }

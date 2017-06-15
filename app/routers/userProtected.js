@@ -1,11 +1,11 @@
 const wrap = require('co-express')
 
 const express = require('express')
-const axios = require('../helpers/axios')
+const axios = global.rootRequire('app/helpers/axios')
 
-const ensureLoggedIn = require('../auth/helpers/ensureLoggedIn.js')
-const ensureLoggedOut = require('../auth/helpers/ensureLoggedOut.js')
-const mongoHelper = require('../helpers/mongo.js')
+const ensureLoggedIn = global.rootRequire('app/auth/helpers/ensureLoggedIn.js')
+const ensureLoggedOut = global.rootRequire('app/auth/helpers/ensureLoggedOut.js')
+const mongoHelper = global.rootRequire('app/helpers/mongo.js')
 
 module.exports = (app, handler) => {
   const protectedRouter = express.Router()

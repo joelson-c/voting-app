@@ -3,9 +3,9 @@ const wrap = require('co-express')
 const express = require('express')
 const apiRouter = express.Router()
 
-const Poll = require('../models/poll.js')
-const ensureLoggedIn = require('../../auth/helpers/ensureLoggedIn.js')
-const mongoHelper = require('../../helpers/mongo.js')
+const Poll = global.rootRequire('db/models/poll.js')
+const ensureLoggedIn = global.rootRequire('app/auth/helpers/ensureLoggedIn.js')
+const mongoHelper = global.rootRequire('app/helpers/mongo.js')
 
 /* poll endpoint */
 apiRouter.route('/:id?')

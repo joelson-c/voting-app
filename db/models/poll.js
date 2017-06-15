@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const db = require('../dbConnect.js')
+const db = require('../')
 
 const Schema = mongoose.Schema
 

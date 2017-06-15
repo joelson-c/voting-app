@@ -31,7 +31,7 @@ class DashboardPage extends React.Component {
           </div>
           <div className='col s12 m6'>
             <Card actions={[
-              <Link href='dashboard/myPolls'>
+              <Link href='dashboard/myAccount'>
                 <a>My Account</a>
               </Link>
             ]}>
