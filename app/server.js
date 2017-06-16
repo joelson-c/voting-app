@@ -1,9 +1,5 @@
 require('./globals.js')
 
-// Lodash utils
-const isEmpty = require('lodash.isempty')
-const isPlainObject = require('lodash.isplainobject')
-
 const express = require('express')
 const next = require('next')
 const passport = require('passport')
@@ -20,23 +16,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev, dir: __dirname})
 const handle = app.getRequestHandler()
 
-// Express custom validators
-const customValidators = {
-  isArray (value) {
-    return Array.isArray(value)
-  },
-
-  hasLeastOneObject (array) {
-    if (isEmpty(array) && this.isArray(array)) {
-      return false
-    } else if (this.isArray(array)) {
-      return array.find((elem) => isPlainObject(elem) === false) === undefined
-    } else {
-      return false
-    }
-  }
-}
-
 app.prepare()
 .then(() => {
   const server = express()
@@ -45,7 +24,7 @@ app.prepare()
 
   // General middlewares
   server.use(require('body-parser').json())
-  server.use(require('express-validator')({ customValidators }))
+  server.use(require('express-validator')(require('./helpers/expressValidators.js')))
 
   server.use(require('express-mongo-sanitize')())
 
@@ -78,10 +57,8 @@ app.prepare()
   })
 
   process.on('SIGTERM', () => {
-    if (isEmpty(process.env.NODE_ENV) || process.env.NODE_ENV === 'development') return process.exit(0)
+    if (process.env.NODE_ENV || process.env.NODE_ENV === 'development') return process.exit(0)
 
-    http.close(() => {
-      process.exit(0)
-    })
+    http.close(() => process.exit(0))
   })
 }).catch((reason) => console.error(reason))

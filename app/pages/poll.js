@@ -112,7 +112,7 @@ class PollPage extends React.Component {
             <div className='input-field'>
               <input
                 type='text'
-                value={`${window.location.hostname}/poll/${this.state.poll._id}`}
+                value={`${window.location.protocol}//${window.location.hostname}/poll/${this.state.poll._id}`}
                 onFocus={(event) => event.target.select()}
               />
             </div>

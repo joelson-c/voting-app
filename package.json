@@ -2,12 +2,12 @@
   "name": "voting-app",
   "version": "0.0.1",
   "private": true,
-  "main": "app/server.js",
+  "main": "app/main.js",
   "repository": "https://github.com/tango05/voting-app",
   "author": "Joelson Santana",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.16.2",
     "babel-plugin-module-resolver": "^2.7.1",
     "body-parser": "^1.17.2",
     "chart.js": "^2.6.0",
@@ -21,21 +21,23 @@
     "lodash.isempty": "^4.4.0",
     "lodash.isplainobject": "^4.0.6",
     "method-override": "^2.3.9",
-    "mongoose": "^4.10.3",
+    "mongoose": "^4.10.6",
     "mongoose-findorcreate": "^2.0.0",
     "mz": "^2.6.0",
-    "next": "beta",
+    "next": "^3.0.0-beta9",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
     "prop-types": "^15.5.10",
-    "react": "^15.5.4",
+    "react": "^15.6.1",
     "react-chartjs-2": "^2.1.0",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.6.1",
+    "source-map": "^0.5.6",
+    "webpack": "^2.6.1"
   },
   "scripts": {
     "dev": "node app/server.js",
     "build": "next build app",
-    "start": "node app/server.js",
+    "start": "NODE_ENV=production node app/server.js",
     "lint": "standard"
   },
   "devDependencies": {
@@ -45,5 +47,6 @@
     "ignore": [
       "/app/static/js/lib/*.js"
     ]
-  }
+  },
+  "false": {}
 }

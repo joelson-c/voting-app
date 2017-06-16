@@ -1,5 +1,4 @@
 import React from 'react'
-import Router from 'next/router'
 import isEmpty from 'lodash.isempty'
 import axios from 'helpers/axios'
 
